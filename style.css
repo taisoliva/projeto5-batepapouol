@@ -1,5 +1,6 @@
 body{
-    background-color: #E5E5E5;;
+    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
 }
 
 *{
@@ -31,38 +32,64 @@ ion-icon{
 
 main{
     width: 375px;
-    height: 100px;
-    background-color: red;
+    margin-top: 106px;
+    margin-bottom: 80px;
+    
+    
 }
 
 .mensagem{
-    margin-top: 106px;
     width: 375px;
-    background-color: green;
-    height: 40px;
     border-radius: 2px;
     padding-left: 10px;
     padding-right: 10px;
+    background-color: #FFFFFF;
+    margin-bottom: 10px; 
 
-    margin-bottom: 5px;
-
-    display: flex;
-
-    align-items: center;
-
+    padding-top: 15px;
+    
 }
 
 .entrou{
     background-color:#DCDCDC;
+    height: 40px;
+   /* background-color:blue;*/
+}
+
+.normal{
+    height: auto;
+    padding-bottom: 10px;
 }
 
 .reservado{
     background-color: #FFDEDE;;
 }
 
+.mensagem span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+   
+}
+
+.mensagem span:nth-child(1){
+    color: #AAAAAA;
+}
+
+.entrou span:nth-child(2){
+    color: #000000;
+    font-weight: bold;
+}
+
+.normal span:nth-child(2),
+.normal span:nth-child(3){
+    color: #000000;
+    font-weight: bold;
+}
+
 footer{
     width: 375px;
-    background-color: white;
+    background-color: blue;
     display: flex;
     align-items: center;
 
@@ -70,7 +97,9 @@ footer{
     padding-right: 20px;
 
     position: fixed;
-    bottom: 0px;
+    bottom: 0;
+
+    
 
 }
 
