@@ -34,8 +34,8 @@ main{
     width: 375px;
     margin-top: 106px;
     margin-bottom: 80px;
-    
-    
+    overflow: scroll;
+
 }
 
 .mensagem{
@@ -47,6 +47,10 @@ main{
     margin-bottom: 10px; 
 
     padding-top: 15px;
+    padding: 5px;
+
+    /*display: flex;*/
+    flex-wrap: wrap;
     
 }
 
@@ -62,7 +66,9 @@ main{
 }
 
 .reservado{
-    background-color: #FFDEDE;;
+    background-color: #FFDEDE;
+    height: auto;
+    padding-bottom: 10px;
 }
 
 .mensagem span{
@@ -87,20 +93,23 @@ main{
     font-weight: bold;
 }
 
+.reservado span:nth-child(2),
+.reservado span:nth-child(3){
+    color: #000000;
+    font-weight: bold;
+}
+
 footer{
     width: 375px;
-    background-color: blue;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
 
-    padding-left: 20px;
+    /*padding-left: 20px;*/
     padding-right: 20px;
 
     position: fixed;
     bottom: 0;
-
-    
-
 }
 
 footer ion-icon{
@@ -111,4 +120,9 @@ input{
     width: 375px;
     height: 80px;
     border: none;
+}
+
+button{
+    border: none;
+    background-color: #FFFFFF;
 }
