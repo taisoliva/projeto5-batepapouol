@@ -14,12 +14,12 @@
 <body class="cor">
     <header>
         <img src="imagem/logo 1.png" alt="">
-        <ion-icon onclick="abrirBarra()" name="people"></ion-icon>
+        <button data-test="open-participants"  onclick="abrirBarra()"> <ion-icon name="people"></ion-icon> </button>
     </header>
 
     <main>
 
-        <div onclick="fecharBarra()" class="local">
+        <div onclick="fecharBarra()" data-test="overlay" class="local">
             
         </div>
     
@@ -38,7 +38,7 @@
                     <h1> Escolha a visibilidade: </h1>
 
                     <ul>
-                        <li onclick="selecionarTipo(this)"> 
+                        <li  data-test="public" data-test="check" onclick="selecionarTipo(this)"> 
                             <ion-icon name="lock-open"></ion-icon> 
                             <p>Público</p> 
                             <span> 
@@ -46,7 +46,7 @@
                             </span> 
                         </li>
 
-                        <li onclick="selecionarTipo(this)"> 
+                        <li data-test="private" data-test="check" onclick="selecionarTipo(this)"> 
                             <ion-icon name="lock-closed"></ion-icon> 
                             <p>Privado</p>
                         
@@ -66,8 +66,16 @@
     
 
     <footer>
-        <input type="text" name="" id="" placeholder="Escreva aqui..."> 
-        <button onclick="enviarMensagem()"><ion-icon name="paper-plane-outline"></ion-icon></button>
+
+        <div class="enviar">
+            <input data-test="input-message" type="text" name="" id="" placeholder="Escreva aqui..."> 
+        <button data-test="send-message"  onclick="enviarMensagem()"><ion-icon name="paper-plane-outline"></ion-icon></button>
+        </div>
+
+        <div data-test="recipient" class="texto-embaixo">
+            kljkljklj
+        </div>
+        
     </footer>
 
     

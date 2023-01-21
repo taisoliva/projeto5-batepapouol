@@ -109,7 +109,7 @@ function imprimirDados(){
     for(let i = 0; i < dadosServidor.length; i++){
         if (dadosServidor[i].type === "status"){
             
-            aux = aux + `<div class="mensagem entrou ">
+            aux = aux + `<div class="mensagem entrou " data-test="message">
                                                        <span> (${dadosServidor[i].time}) </span>  
                                                        <span> ${dadosServidor[i].from} </span> 
                                                        <span> ${dadosServidor[i].text} </span>
@@ -118,7 +118,7 @@ function imprimirDados(){
         }
 
        else if (dadosServidor[i].type === "message"){
-            aux = aux + `<div class="mensagem normal">
+            aux = aux + `<div class="mensagem normal" data-test="message">
                                                             <span> (${dadosServidor[i].time}) </span>  
                                                             <span> ${dadosServidor[i].from} </span> para 
                                                             <span> ${dadosServidor[i].to} </span>:
@@ -127,7 +127,7 @@ function imprimirDados(){
         }
 
         else if(dadosServidor[i].to === nome || dadosServidor[i].from === nome){
-            aux = aux + `<div class="mensagem reservado">
+            aux = aux + `<div class="mensagem reservado" data-test="message">
                                                             <span> (${dadosServidor[i].time}) </span>  
                                                             <span> ${dadosServidor[i].from} </span> reservadamente para
                                                             <span> ${dadosServidor[i].to} </span>:
@@ -181,6 +181,8 @@ function fecharBarra(){
     const barra = document.querySelector("aside");
     barra.classList.add("escondido");
 
+    atualizaInput();
+
 }
 
 function exibirContatos(){
@@ -188,15 +190,15 @@ function exibirContatos(){
     let contatos = document.querySelector(".nomes ul");
     contatos.innerHTML = "";
 
-    contatos.innerHTML = contatos.innerHTML + `<li onclick="selecionarParticipante(this)" > 
+    contatos.innerHTML = contatos.innerHTML + `<li data-test="all" onclick="selecionarParticipante(this)" > 
                                                     <ion-icon name="people"></ion-icon> 
-                                                    <p> Todos </p> 
+                                                    <p > Todos </p> 
                                                     <span> <ion-icon class="check" name="checkmark"></ion-icon> </span> </li>`
 
     for(let i = 0; i< participantes.length; i++){
 
         if(participantes[i].name !== nome){
-            contatos.innerHTML = contatos.innerHTML +  `<li onclick="selecionarParticipante(this)"> 
+            contatos.innerHTML = contatos.innerHTML +  `<li data-test="participant" data-test="check" onclick="selecionarParticipante(this)"> 
                                                         <ion-icon name="person-circle"></ion-icon> <p> ${participantes[i].name} </p>
                                                         <span> <ion-icon class="check" name="checkmark"></ion-icon> </span>
                                                      </li>`
@@ -244,6 +246,18 @@ function selecionarTipo(tipoSelecionado){
         
 }
 
+function atualizaInput(){
+
+    const input = document.querySelector(".texto-embaixo");
+    
+
+    if(tipoEscolhido === "private_message"){
+        input.innerHTML = `Enviando para ${nomeParticipante} (reservadamente)`;
+    }else{
+        input.innerHTML = `Enviando para ${nomeParticipante} (publico)`;
+    }
+    
+}
 
 
 
