@@ -8,9 +8,9 @@ let idSetInterval;
 
 let participantes = [];
 
-let nomeParticipante;
+let nomeParticipante ="Todos";
 
-let tipoEscolhido;
+let tipoEscolhido="message";
 
 
 perguntarNome();
@@ -156,6 +156,30 @@ envio.addEventListener("keyup", function(event) {
         enviarMensagem();
     }
 });
+
+function abrirBarra(){
+    
+    document.querySelector("body").classList.remove("cor");
+    document.querySelector("body").classList.add("cor-fundo");
+
+    document.querySelector(".local").classList.add("fundo-preto");
+
+    const barra = document.querySelector("aside");
+    barra.classList.remove("escondido");
+
+}
+
+function fecharBarra(){
+    
+    document.querySelector("body").classList.add("cor");
+    document.querySelector("body").classList.remove("cor-fundo");
+
+    document.querySelector(".local").classList.remove("fundo-preto");
+
+    const barra = document.querySelector("aside");
+    barra.classList.add("escondido");
+
+}
 
 function exibirContatos(){
 
