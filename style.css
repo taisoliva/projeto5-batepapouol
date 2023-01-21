@@ -1,5 +1,6 @@
 body{
     font-family: 'Roboto', sans-serif;
+    margin: auto;
 }
 
 *{
@@ -9,7 +10,7 @@ body{
 header{
     background-color: blue;
     height: 80px;
-    width: 375px;
+    width: 100%;
     box-shadow: 0px 4px 6px rgba(0, 255, 0, 0.05);
     display: flex;
     justify-content: space-between;
@@ -31,7 +32,7 @@ ion-icon{
 }
 
 main{
-    width: 375px;
+    width: 100%;
     margin-top: 106px;
     margin-bottom: 80px;
     overflow: scroll;
@@ -41,7 +42,7 @@ main{
 }
 
 .mensagem{
-    width: 375px;
+    width: 100%;
     border-radius: 2px;
     padding-left: 10px;
     padding-right: 10px;
@@ -104,7 +105,7 @@ main{
 }
 
 footer{
-    width: 375px;
+    width: 100%;
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -121,7 +122,7 @@ footer ion-icon{
 }
 
 input{
-    width: 375px;
+    width: 100%;
     height: 80px;
     border: none;
 }
@@ -181,6 +182,7 @@ span ion-icon{
     text-align: center;
     color: black;
 
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 

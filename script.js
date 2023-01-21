@@ -87,6 +87,8 @@ function entrarNaSala(){
     recarregaMensagens();
     buscarParticipantes();
     recarregarParticipantes();
+
+    document.querySelector(".usuario").innerHTML = ` Bem vindo(a): ${nome}`;
 }
 
 /* verifica se o usuário está na sala*/
@@ -124,7 +126,7 @@ function imprimirDados(){
                                                         </div>`;
         }
 
-        else {
+        else if(dadosServidor[i].to === nome || dadosServidor[i].from === nome){
             aux = aux + `<div class="mensagem reservado">
                                                             <span> (${dadosServidor[i].time}) </span>  
                                                             <span> ${dadosServidor[i].from} </span> reservadamente para
@@ -243,6 +245,8 @@ function selecionarTipo(tipoSelecionado){
 }
 
 
+
+
 function enviarMensagem(){
 
     const input = document.querySelector("input");
@@ -252,10 +256,6 @@ function enviarMensagem(){
     if(texto === ""){
         return;
     }
-
-
-    
-
         const textoParaEnviar = { from:nome,
             to:nomeParticipante,
             text:texto,
@@ -265,7 +265,6 @@ function enviarMensagem(){
 
         requisicao.then(imprimir);
         requisicao.catch(atualizaPagina);
-    
     
 }
 
