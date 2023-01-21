@@ -11,15 +11,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="cor">
     <header>
         <img src="imagem/logo 1.png" alt="">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon onclick="exibirContatos()" name="people"></ion-icon>
     </header>
 
-    <main>
+    <main >
+
+        <div class="local">
+            
+        </div>
     
+
+        <aside>
+            <div class="contatos">
+
+                <div class="nomes">
+                     <h1> Escolha um contato para enviar mensagem: </h1>
+                            <ul> </ul>
+                </div>
+
+                <div class="tipo">
+                    <h1> Escolha a visibilidade: </h1>
+
+                    <ul>
+                        <li onclick="selecionarTipo(this)"> 
+                            <ion-icon name="lock-open"></ion-icon> 
+                            <p>Público</p> 
+                            <span> 
+                                <ion-icon class="check" name="checkmark"></ion-icon> 
+                            </span> 
+                        </li>
+
+                        <li onclick="selecionarTipo(this)"> 
+                            <ion-icon name="lock-closed"></ion-icon> 
+                            <p>Privado</p>
+                        
+                            <span> 
+                                <ion-icon class="check" name="checkmark"></ion-icon> 
+                            </span> 
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </aside>
     </main>
+
+    
 
     <footer>
         <input type="text" name="" id="" placeholder="Escreva aqui..."> 

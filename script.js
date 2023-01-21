@@ -6,6 +6,12 @@ let dadosServidor = [];
 
 let idSetInterval;
 
+let participantes = [];
+
+let nomeParticipante;
+
+let tipoEscolhido;
+
 
 perguntarNome();
 
@@ -43,6 +49,11 @@ function buscarMensagens(){
     promisse.then(processarMensagens);
 }
 
+function buscarParticipantes(){
+    const promisse = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    promisse.then(processarParticipantes);
+}
+
 function manterConexao(){
     const promisse = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", dados);
     promisse.then(verificaConexao)
@@ -59,12 +70,26 @@ function processarMensagens(resposta){
     imprimirDados();
 }
 
+function processarParticipantes(resposta){
+    participantes = [];
+    console.log("buscou participante");
+    for(let i = 0; i< resposta.data.length; i++){
+        participantes.push(resposta.data[i]);
+    }
+
+    exibirContatos();
+    console.log(participantes);
+}
+
 function entrarNaSala(){
     buscarMensagens(); 
     ativaStatus();
     recarregaMensagens();
+    buscarParticipantes();
+    recarregarParticipantes();
 }
 
+/* verifica se o usuário está na sala*/
 function ativaStatus(){
     setInterval(manterConexao,5000);
 }
@@ -76,13 +101,13 @@ console.log(mensagem);
 /* imprimi as mensagens e quem entrou na sala*/ 
 function imprimirDados(){
  
-    let mensagem = document.querySelector("main");
+    let mensagem = document.querySelector(".local");
     let aux ="";
 
     for(let i = 0; i < dadosServidor.length; i++){
         if (dadosServidor[i].type === "status"){
             
-            aux = aux + `<div class="mensagem entrou">
+            aux = aux + `<div class="mensagem entrou ">
                                                        <span> (${dadosServidor[i].time}) </span>  
                                                        <span> ${dadosServidor[i].from} </span> 
                                                        <span> ${dadosServidor[i].text} </span>
@@ -111,11 +136,17 @@ function imprimirDados(){
 
     mensagem.innerHTML = aux;
     
+    /* quando tem mensagem nova rola a tela*/
    setTimeout(()=> document.querySelector("main div:last-child").scrollIntoView(), 0);
 }
 
+/* recarregar mensagens do chat para manter atualizado*/
 function recarregaMensagens(){
     setInterval(buscarMensagens,3000);
+}
+
+function recarregarParticipantes(){
+    setInterval(buscarParticipantes,10000);
 }
 
 let envio = document.querySelector("input");
@@ -125,6 +156,68 @@ envio.addEventListener("keyup", function(event) {
         enviarMensagem();
     }
 });
+
+function exibirContatos(){
+
+    let contatos = document.querySelector(".nomes ul");
+    contatos.innerHTML = "";
+
+    contatos.innerHTML = contatos.innerHTML + `<li onclick="selecionarParticipante(this)" > 
+                                                    <ion-icon name="people"></ion-icon> 
+                                                    <p> Todos </p> 
+                                                    <span> <ion-icon class="check" name="checkmark"></ion-icon> </span> </li>`
+
+    for(let i = 0; i< participantes.length; i++){
+
+        if(participantes[i].name !== nome){
+            contatos.innerHTML = contatos.innerHTML +  `<li onclick="selecionarParticipante(this)"> 
+                                                        <ion-icon name="person-circle"></ion-icon> <p> ${participantes[i].name} </p>
+                                                        <span> <ion-icon class="check" name="checkmark"></ion-icon> </span>
+                                                     </li>`
+        }
+        
+    }
+}
+
+function selecionarParticipante(participanteSelecionado){
+
+    const selecionado = document.querySelector(".selecionado");
+
+    if(selecionado !== null){
+        selecionado.classList.add("check");
+        selecionado.classList.remove("selecionado");
+    }
+    
+        nomeParticipante = participanteSelecionado.querySelector("p").innerHTML;
+        participanteSelecionado.querySelector("span ion-icon").classList.remove("check");
+        participanteSelecionado.querySelector("span ion-icon").classList.add("selecionado");
+        
+}
+
+function selecionarTipo(tipoSelecionado){
+
+    const selecionado = document.querySelector(".selecionado-tipo");
+
+    if(selecionado !== null){
+        selecionado.classList.add("check");
+        selecionado.classList.remove("selecionado-tipo");
+    }
+    
+   const valor = tipoSelecionado.querySelector("p").innerHTML;
+   
+   if (valor == "Privado"){
+        tipoEscolhido = "private_message";
+    } else{
+        console.log("não é");
+        tipoEscolhido = "message";
+    }
+
+
+    tipoSelecionado.querySelector("span ion-icon").classList.remove("check");
+    tipoSelecionado.querySelector("span ion-icon").classList.add("selecionado-tipo");
+        
+}
+
 
 function enviarMensagem(){
 
@@ -136,15 +229,20 @@ function enviarMensagem(){
         return;
     }
 
-    const textoParaEnviar = {   from:nome,
-                to:'Todos',
-                text:texto,
-                type: "message"};
 
-   const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",textoParaEnviar);
-   
-   requisicao.then(imprimir);
-   requisicao.catch(atualizaPagina);
+    
+
+        const textoParaEnviar = { from:nome,
+            to:nomeParticipante,
+            text:texto,
+            type:tipoEscolhido};
+
+        const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",textoParaEnviar);
+
+        requisicao.then(imprimir);
+        requisicao.catch(atualizaPagina);
+    
+    
 }
 
 function atualizaPagina(){
@@ -155,5 +253,4 @@ function imprimir(resposta){
     console.log("Depois de enviar");
     buscarMensagens();
 }
-
 
