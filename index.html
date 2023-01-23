@@ -43,19 +43,19 @@
                     <h1> Escolha a visibilidade: </h1>
 
                     <ul>
-                        <li  data-test="public" data-test="check" onclick="selecionarTipo(this)"> 
+                        <li  data-test="public"  onclick="selecionarTipo(this)"> 
                             <ion-icon name="lock-open"></ion-icon> 
                             <p>Público</p> 
-                            <span> 
-                                <ion-icon class="check" name="checkmark"></ion-icon> 
+                            <span data-test="check"> 
+                                <ion-icon  class="check" name="checkmark"></ion-icon> 
                             </span> 
                         </li>
 
-                        <li data-test="private" data-test="check" onclick="selecionarTipo(this)"> 
+                        <li data-test="private" onclick="selecionarTipo(this)"> 
                             <ion-icon name="lock-closed"></ion-icon> 
                             <p>Privado</p>
                         
-                            <span> 
+                            <span data-test="check"> 
                                 <ion-icon class="check" name="checkmark"></ion-icon> 
                             </span> 
                         </li>

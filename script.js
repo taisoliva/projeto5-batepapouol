@@ -91,6 +91,10 @@ function entrarNaSala(){
     document.querySelector(".usuario").innerHTML = ` Bem vindo(a): ${nome}`;
 }
 
+function recarregarParticipantes(){
+    setInterval(buscarParticipantes,10000);
+}
+
 /* verifica se o usuário está na sala*/
 function ativaStatus(){
     setInterval(manterConexao,5000);
@@ -147,10 +151,6 @@ function recarregaMensagens(){
     setInterval(buscarMensagens,3000);
 }
 
-function recarregarParticipantes(){
-    setInterval(buscarParticipantes,10000);
-}
-
 let envio = document.querySelector("input");
 envio.addEventListener("keyup", function(event) {
     if(event.keyCode === 13){
@@ -192,9 +192,9 @@ function exibirContatos(){
     for(let i = 0; i< participantes.length; i++){
 
         if(participantes[i].name !== nome){
-            contatos.innerHTML = contatos.innerHTML +  `<li data-test="participant" data-test="check" onclick="selecionarParticipante(this)"> 
+            contatos.innerHTML = contatos.innerHTML +  `<li data-test="participant" onclick="selecionarParticipante(this)"> 
                                                         <ion-icon name="person-circle"></ion-icon> <p> ${participantes[i].name} </p>
-                                                        <span> <ion-icon class="check" name="checkmark"></ion-icon> </span>
+                                                        <span data-test="check"> <ion-icon class="check" name="checkmark"></ion-icon> </span>
                                                      </li>`
         }
         
