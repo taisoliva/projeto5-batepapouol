@@ -187,14 +187,14 @@ function exibirContatos(){
     contatos.innerHTML = contatos.innerHTML + `<li data-test="all" onclick="selecionarParticipante(this)" > 
                                                     <ion-icon name="people"></ion-icon> 
                                                     <p > Todos </p> 
-                                                    <span> <ion-icon class="check" name="checkmark"></ion-icon> </span> </li>`
+                                                    <span> <ion-icon data-test="check" class="check" name="checkmark"></ion-icon> </span> </li>`
 
     for(let i = 0; i< participantes.length; i++){
 
         if(participantes[i].name !== nome){
             contatos.innerHTML = contatos.innerHTML +  `<li data-test="participant" onclick="selecionarParticipante(this)"> 
                                                         <ion-icon name="person-circle"></ion-icon> <p> ${participantes[i].name} </p>
-                                                        <span data-test="check"> <ion-icon class="check" name="checkmark"></ion-icon> </span>
+                                                        <span> <ion-icon data-test="check" class="check" name="checkmark"></ion-icon> </span>
                                                      </li>`
         }
         
