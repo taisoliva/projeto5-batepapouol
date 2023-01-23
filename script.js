@@ -161,10 +161,7 @@ envio.addEventListener("keyup", function(event) {
 
 function abrirBarra(){
     
-    document.querySelector("body").classList.remove("cor");
-    document.querySelector("body").classList.add("cor-fundo");
-
-    document.querySelector(".escurecer").classList.add("fundo-preto");
+    document.querySelector(".escurecer").classList.remove("escondido");
 
     const barra = document.querySelector("aside");
     barra.classList.remove("escondido");
@@ -173,10 +170,7 @@ function abrirBarra(){
 
 function fecharBarra(){
     
-    document.querySelector("body").classList.add("cor");
-    document.querySelector("body").classList.remove("cor-fundo");
-
-    document.querySelector(".escurecer").classList.remove("fundo-preto");
+    document.querySelector(".escurecer").classList.add("escondido");
 
     const barra = document.querySelector("aside");
     barra.classList.add("escondido");
